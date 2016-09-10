@@ -19,7 +19,8 @@ namespace AndroidShowcase.WebUI.Controllers
         // GET: Notes
         public ViewResult List()
         {
-            return View(noteRepo.Notes);
+            var notes = noteRepo.Notes();
+            return View(notes.Result);
         }
     }
 }
