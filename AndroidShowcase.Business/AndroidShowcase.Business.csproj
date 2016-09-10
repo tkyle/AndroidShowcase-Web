@@ -70,6 +70,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\INotesRepository.cs" />
+    <Compile Include="Concrete\AndroidRepositoryContext.cs" />
+    <Compile Include="Concrete\AndroidShowcaseRepository.cs" />
     <Compile Include="Entities\Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

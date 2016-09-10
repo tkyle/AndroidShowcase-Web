@@ -1,4 +1,5 @@
 ﻿using AndroidShowcase.Business.Abstract;
+using AndroidShowcase.Business.Concrete;
 using AndroidShowcase.Business.Entities;
 using Moq;
 using Ninject;
@@ -32,16 +33,20 @@ namespace AndroidShowcase.WebUI.Infrastructure
 
         public void AddBindings()
         {
-            Mock<INotesRepository> mock = new Mock<INotesRepository>();
+            // Use live data
+            kernel.Bind<INotesRepository>().To<AndroidShowcaseRepository>();
 
-            mock.Setup(m => m.Notes).Returns(new List<Note>
-            {
-                new Note { NoteId = "1", NoteTitle = "Title 1", NoteContent = "Content 1"},
-                new Note { NoteId = "2", NoteTitle = "Title 2", NoteContent = "Content 2"},
-                new Note { NoteId = "3", NoteTitle = "Title 3", NoteContent = "Content 3"}
-            });
+            // Use Mock data to test site
+            //Mock<INotesRepository> mock = new Mock<INotesRepository>();
 
-            kernel.Bind<INotesRepository>().ToConstant(mock.Object);
+            //mock.Setup(m => m.Notes).Returns(new List<Note>
+            //{
+            //    new Note { NoteId = "1", NoteTitle = "Title 1", NoteContent = "Content 1"},
+            //    new Note { NoteId = "2", NoteTitle = "Title 2", NoteContent = "Content 2"},
+            //    new Note { NoteId = "3", NoteTitle = "Title 3", NoteContent = "Content 3"}
+            //});
+
+            //kernel.Bind<INotesRepository>().ToConstant(mock.Object);
         }
     }
 }
