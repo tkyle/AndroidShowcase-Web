@@ -12,6 +12,9 @@ namespace AndroidShowcase.Business.Concrete
     {
         //private AndroidRepositoryContext context = new AndroidRepositoryContext();
 
-        public IEnumerable<Note> Notes { get; }
+        public IEnumerable<Note> Notes()
+        {
+            return new List<Note>();
+        }
     }
 }

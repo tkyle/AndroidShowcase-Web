@@ -9,6 +9,6 @@ namespace AndroidShowcase.Business.Abstract
 {
     public interface INotesRepository
     {
-        IEnumerable<Note> Notes { get; }
+        IEnumerable<Note> Notes();
     }
 }
