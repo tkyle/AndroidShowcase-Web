@@ -1,0 +1,16 @@
+﻿@using AndroidShowcase.Business.Entities
+@model IEnumerable<Note>
+
+@{
+    ViewBag.Title = "Notes";
+}
+
+@foreach (var n in Model)
+{
+    <div>
+        <h3>@n.NoteId</h3>
+        @n.NoteTitle
+        <h4>@n.NoteContent</h4>
+    </div>
+}
+
