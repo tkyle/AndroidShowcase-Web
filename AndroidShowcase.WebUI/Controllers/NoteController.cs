@@ -9,9 +9,9 @@ namespace AndroidShowcase.WebUI.Controllers
 {
     public class NoteController : Controller
     {
-        private INotesRepository noteRepo;
+        private IAndroidShowcaseRepository noteRepo;
 
-        public NoteController(INotesRepository noteRepoParameter)
+        public NoteController(IAndroidShowcaseRepository noteRepoParameter)
         {
             this.noteRepo = noteRepoParameter;
         }
@@ -20,7 +20,7 @@ namespace AndroidShowcase.WebUI.Controllers
         public ViewResult List()
         {
             var notes = noteRepo.Notes();
-            return View(notes.Result);
+            return View(notes);
         }
     }
 }

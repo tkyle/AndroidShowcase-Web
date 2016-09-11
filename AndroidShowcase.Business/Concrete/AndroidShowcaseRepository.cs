@@ -11,15 +11,15 @@ using System.Threading.Tasks;
 
 namespace AndroidShowcase.Business.Concrete
 {
-    public class AndroidShowcaseRepository : INotesRepository
+    public class AndroidShowcaseRepository : IAndroidShowcaseRepository
     {
         //private AndroidRepositoryContext context = new AndroidRepositoryContext();
 
         private AmazonDynamoDBClient client = new AmazonDynamoDBClient();
 
-        public async Task<IEnumerable<Note>> Notes()
+        public IEnumerable<Note> Notes()
         {
-            ScanRequest scanRequest = new ScanRequest("androidshowcase-mobilehub-757025675-Notes");
+            ScanRequest scanRequest = new ScanRequest("androidshowcase-mobilehub-757025675-Notes");            
             ScanResult result = client.Scan(scanRequest);
 
             var notes = new List<Note>();
@@ -31,6 +31,22 @@ namespace AndroidShowcase.Business.Concrete
             }
 
             return notes;
+        }
+
+        public IEnumerable<Product> Products()
+        {
+            ScanRequest scanRequest = new ScanRequest("Products");
+            ScanResult result = client.Scan(scanRequest);
+
+            var products = new List<Product>();
+
+            foreach (var p in result.Items)
+            {
+                var product = new Product() { ProductId = p["ProductId"].S, Name = p["Name"].S, Description = p["Description"].S, Cost = Decimal.Parse(p["Cost"].N) };
+                products.Add(product);
+            }
+
+            return products;
         }
     }
 }

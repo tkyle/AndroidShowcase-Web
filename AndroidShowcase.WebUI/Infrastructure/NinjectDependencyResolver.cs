@@ -34,7 +34,7 @@ namespace AndroidShowcase.WebUI.Infrastructure
         public void AddBindings()
         {
             // Use live data
-            kernel.Bind<INotesRepository>().To<AndroidShowcaseRepository>();
+            kernel.Bind<IAndroidShowcaseRepository>().To<AndroidShowcaseRepository>();
 
             // Use Mock data to test site
             //Mock<INotesRepository> mock = new Mock<INotesRepository>();

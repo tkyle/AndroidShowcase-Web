@@ -80,10 +80,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\INotesRepository.cs" />
+    <Compile Include="Abstract\IAndroidShowcaseRepository.cs" />
     <Compile Include="Concrete\AndroidRepositoryContext.cs" />
     <Compile Include="Concrete\AndroidShowcaseRepository.cs" />
     <Compile Include="Entities\Note.cs" />
+    <Compile Include="Entities\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

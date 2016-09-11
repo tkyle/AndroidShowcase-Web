@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace AndroidShowcase.Business.Abstract
 {
-    public interface INotesRepository
+    public interface IAndroidShowcaseRepository
     {
-        Task<IEnumerable<Note>> Notes();
+        IEnumerable<Note> Notes();
+        IEnumerable<Product> Products();
     }
 }
