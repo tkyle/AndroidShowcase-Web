@@ -42,7 +42,7 @@ namespace AndroidShowcase.Business.Concrete
 
             foreach (var p in result.Items)
             {
-                var product = new Product() { ProductId = p["ProductId"].S, Name = p["Name"].S, Description = p["Description"].S, Cost = Decimal.Parse(p["Cost"].N) };
+                var product = new Product() { UserId = p["UserId"].S, ProductId = p["ProductId"].S, Name = p["Name"].S, Description = p["Description"].S, Cost = Decimal.Parse(p["Cost"].N) };
                 products.Add(product);
             }
 
