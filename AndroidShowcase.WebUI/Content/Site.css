@@ -20,6 +20,41 @@
     border-radius:7px;
 }
 
+hr.title-separator {
+    border: 0;
+    height: 1px;
+    background: black;    
+}
+
+hr.separator {
+    border: 0;
+    height: 1px;
+    background: black;
+}
+
 .background {
  background: #dbdbdb
+}
+
+.productTable {
+    width: 100%
+}
+
+tbody >tr { 
+  border: solid;
+  border-width: 1px 0;
+  border-color: darkgray;
+  height: 50px
+}
+
+.nameColumn {
+    width: 35%;
+}
+
+.descriptionColumn {
+    width: 55%;
+}
+
+.costColumn {
+    width: 10%;
 }
