@@ -48,5 +48,18 @@ namespace AndroidShowcase.Business.Concrete
 
             return products;
         }
+
+        public void DeleteProduct(string productId, string userId)
+        {
+            string tableName = "Products";
+
+            var request = new DeleteItemRequest
+            {
+                TableName = tableName,
+                Key = new Dictionary<string, AttributeValue>() { { "UserId", new AttributeValue { S = userId } }, { "ProductId", new AttributeValue { S = productId } } },
+            };
+
+            var response = client.DeleteItem(request);
+        }
     }
 }

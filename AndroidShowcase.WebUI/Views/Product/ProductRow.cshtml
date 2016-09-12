@@ -1,10 +1,15 @@
 ﻿@using AndroidShowcase.Business.Entities
 @model Product
 
-<tr>
+<tr data-productid=@Model.ProductId data-userid="@Model.UserId">
    <td>@Model.Name</td>
-    <td>@Model.Description</td>
-    <td>@Model.Cost</td>
+   <td>@Model.Description</td>
+   <td>@Model.Cost</td>
+   <td>
+       <button type="button" class="btn btn-sm btn-warning editButton">Edit</button>    
+   </td>
+   <td>
+        <button type="button" class="btn btn-sm btn-link deleteButton">Delete</button> 
+   </td>
 </tr>
-
 

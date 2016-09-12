@@ -48,13 +48,21 @@ tbody >tr {
 }
 
 .nameColumn {
-    width: 35%;
+    width: 30%;
 }
 
 .descriptionColumn {
-    width: 55%;
+    width: 50%;
 }
 
 .costColumn {
     width: 10%;
+}
+
+.editColumn {
+    width: 5%;
+}
+
+.deleteColumn {
+    width: 5%;
 }

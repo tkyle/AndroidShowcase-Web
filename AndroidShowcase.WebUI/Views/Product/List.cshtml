@@ -16,12 +16,11 @@
             <th class="costColumn">Cost</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var p in Model.Products)
-        {
-            @Html.Partial("ProductRow", p)
-        }
+    <tbody id="productlist">
+        @Html.Partial("ProductList", Model.Products)
     </tbody>
 </table>
+
+<script src="~/Scripts/product.js"></script>
 
 

@@ -24,5 +24,19 @@ namespace AndroidShowcase.WebUI.Controllers
             
             return View(productsViewModel);
         }
+
+        [HttpPost]
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public PartialViewResult Delete(string productid, string userid)
+        {
+            showcaseRepo.DeleteProduct(productid, userid);
+
+            return PartialView("ProductList", showcaseRepo.Products());
+        }
     }
 }
