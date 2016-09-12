@@ -1,4 +1,5 @@
 ﻿using AndroidShowcase.Business.Abstract;
+using AndroidShowcase.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,9 @@ namespace AndroidShowcase.WebUI.Controllers
         // GET: Products
         public ViewResult List()
         {
-            var products = showcaseRepo.Products();
-            return View(products);
+            var productsViewModel = new ProductsViewModel() { Products = showcaseRepo.Products() };
+            
+            return View(productsViewModel);
         }
     }
 }

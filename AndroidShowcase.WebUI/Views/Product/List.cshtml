@@ -1,13 +1,12 @@
-﻿@using AndroidShowcase.Business.Entities
-@model IEnumerable<Product>
+﻿@model AndroidShowcase.WebUI.Models.ProductsViewModel
 
 @{
     ViewBag.Title = "Products";
 }
 
-<hr />
+<h3>Products</h3>
 
-@foreach (var p in Model)
+@foreach (var p in Model.Products)
 {
     <div>
         <h3>@p.ProductId</h3>
