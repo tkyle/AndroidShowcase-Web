@@ -3,6 +3,10 @@
     padding-right: 15px;
 }
 
+ .editButton, .deleteButton {
+    cursor: pointer;
+}
+
 .center {
     margin: auto;
     width: 50%;
