@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-   $(".deleteButton").click(function () {
+   $(document).on("click", ".deleteButton", function () {
 
         var pid = $(this).closest("tr").data("productid");
         var uid = $(this).closest("tr").data("userid");
@@ -10,16 +10,16 @@
             type: "post",
             data: { productid: pid, userid: uid },
             success: function (result) {
-                $("#partial").html(result);
+                $("#productlist").html(result);
             }
         });
     });
 
-    $(".editButton").click(function () {
+    $(document).on("click", ".editButton", function () {
         $.ajax({
             url: "Product/Edit",
             type: "get",
-            data: $("form").serialize(), //if you need to post Model data, use this
+            data: $("form").serialize(),
             success: function (result) {
                 $("#productlist").html(result);
             }
