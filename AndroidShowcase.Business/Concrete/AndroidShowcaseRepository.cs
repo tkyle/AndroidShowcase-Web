@@ -1,4 +1,5 @@
 ﻿using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.Model;
 using AndroidShowcase.Business.Abstract;
@@ -60,6 +61,51 @@ namespace AndroidShowcase.Business.Concrete
             };
 
             var response = client.DeleteItem(request);
+        }
+
+        public Product GetProduct(string productId, string userId)
+        {
+            string tableName = "Products";
+
+            var request = new GetItemRequest
+            {
+                TableName = tableName,
+                Key = new Dictionary<string, AttributeValue>() { { "UserId", new AttributeValue { S = userId } }, { "ProductId", new AttributeValue { S = productId } } },
+            };
+
+            var p = client.GetItem(request);
+
+            return new Product() { UserId = p.Item["UserId"].S, ProductId = p.Item["ProductId"].S, Name = p.Item["Name"].S, Description = p.Item["Description"].S, Cost = Decimal.Parse(p.Item["Cost"].N) };
+        }
+
+        public void InsertProduct(Product product)
+        {
+            var context = new DynamoDBContext(client);
+
+            var newProduct = new Product
+            {
+                UserId = "us-east-1:84e7f96b-d785-4f5e-beb8-7fc988078558",
+                ProductId = Guid.NewGuid().ToString(),
+                Name = product.Name,
+                Description = product.Description,
+                Cost = product.Cost
+
+            };            
+
+            context.Save(newProduct);       
+        }
+
+        public void UpdateProduct(Product product)
+        {
+            var context = new DynamoDBContext(client);
+
+            var productRetrived = context.Load<Product>(product.UserId, product.ProductId);
+
+            productRetrived.Name = product.Name;
+            productRetrived.Description = product.Description;
+            productRetrived.Cost = product.Cost;
+
+            context.Save(product);         
         }
     }
 }

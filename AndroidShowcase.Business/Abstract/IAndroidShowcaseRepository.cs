@@ -12,5 +12,8 @@ namespace AndroidShowcase.Business.Abstract
         IEnumerable<Note> Notes();
         IEnumerable<Product> Products();
         void DeleteProduct(string productId, string userId);
+        Product GetProduct(string productId, string userId);
+        void InsertProduct(Product product);
+        void UpdateProduct(Product product);
     }
 }

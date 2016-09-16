@@ -17,12 +17,31 @@ namespace AndroidShowcase.WebUI.Controllers
             this.showcaseRepo = showcaseRepoParameter;
         }
 
-        // GET: Products
         public ViewResult List()
         {
             var productsViewModel = new ProductsViewModel() { Products = showcaseRepo.Products() };
             
             return View(productsViewModel);
+        }
+
+        [HttpGet]
+        public PartialViewResult GetProductDialog(string productid, string userid)
+        {
+            var productDialogViewModel = new ProductDialogViewModel();
+
+            if(string.IsNullOrWhiteSpace(productid) || string.IsNullOrWhiteSpace(userid))
+            {
+                productDialogViewModel.IsNew = true;
+            }
+            else
+            {
+                var product = showcaseRepo.GetProduct(productid, userid);
+
+                productDialogViewModel.ProductBO = product;
+                productDialogViewModel.IsNew = false; 
+            }
+
+            return PartialView("ProductDialog", productDialogViewModel);
         }
 
         [HttpPost]
@@ -37,6 +56,18 @@ namespace AndroidShowcase.WebUI.Controllers
             showcaseRepo.DeleteProduct(productid, userid);
 
             return PartialView("ProductList", showcaseRepo.Products());
+        }
+
+        [HttpPost]
+        public JavaScriptResult UpdateOrInsertProduct(ProductDialogViewModel productDialogViewModel)
+        {
+             if (productDialogViewModel.IsNew)
+                showcaseRepo.InsertProduct(productDialogViewModel.ProductBO);
+            else
+                showcaseRepo.UpdateProduct(productDialogViewModel.ProductBO);
+
+            return JavaScript("location.reload(true)");
+
         }
     }
 }

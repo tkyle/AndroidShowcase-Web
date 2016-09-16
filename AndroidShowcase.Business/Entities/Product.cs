@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Amazon.DynamoDBv2.DataModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AndroidShowcase.Business.Entities
 {
+    [DynamoDBTable("Products")]
     public class Product
     {
         public string UserId { get; set; }

@@ -1,0 +1,29 @@
+﻿@using AndroidShowcase.WebUI.Models
+@model ProductDialogViewModel
+
+<div class="modal-dialog">
+    <div class="modal-content">
+    @using (Html.BeginForm("UpdateOrInsertProduct", "Product"))
+    {
+        @Html.HiddenFor(p => p.IsNew);
+        @Html.HiddenFor(p => p.ProductBO.UserId);
+        @Html.HiddenFor(p => p.ProductBO.ProductId);
+
+        <div class="modal-header">
+            <h4 class="modal-title">@(Model.IsNew ? "New Product" : "Edit Product")</h4>
+        </div>
+        <div class="modal-body">
+            <h3 for="name">Name</h3>
+            @Html.EditorFor(p => p.ProductBO.Name, new { htmlAttributes = new { @id = "name", @class = "form-control" } })
+            <h3 for="description">Description</h3>
+            @Html.EditorFor(p => p.ProductBO.Description, new { htmlAttributes = new { @id = "description", @class = "form-control" }})
+            <h3 for="cost">Cost</h3>
+            @Html.EditorFor(p => p.ProductBO.Cost, new { htmlAttributes = new { @id = "cost", @class = "form-control" } })
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-success" data-ajax="false" value="Save" />            
+        </div>
+    }
+    </div>
+</div>

@@ -351,6 +351,7 @@
     <Content Include="Scripts\jquery-2.2.4.min.js" />
     <Content Include="Scripts\jquery.mobile-1.4.5.js" />
     <Content Include="Scripts\jquery.mobile-1.4.5.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\product.js" />
     <Content Include="Web.config" />
@@ -364,6 +365,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\ProductDialogViewModel.cs" />
     <Compile Include="Models\ProductsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -378,6 +380,7 @@
     <Content Include="Views\Product\ProductList.cshtml" />
     <Content Include="Scripts\jquery.mobile-1.4.5.min.map" />
     <Content Include="Scripts\jquery-2.2.4.min.map" />
+    <Content Include="Views\Product\ProductDialog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
