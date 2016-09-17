@@ -6,7 +6,7 @@
         var uid = $(this).closest("tr").data("userid");
 
         $.ajax({
-            url: "Product/Delete",
+            url: "AndroidShowcase/Product/Delete",
             type: "post",
             cache: false,
             data: { productid: pid, userid: uid },
@@ -25,7 +25,7 @@
         var uid = $(this).closest("tr").data("userid");
 
         $.ajax({
-            url: "Product/GetProductDialog",
+            url: "AndroidShowcase/Product/GetProductDialog",
             type: "get",
             cache: false,
             data: { productid: pid, userid: uid },
@@ -44,7 +44,7 @@
         var uid = "";
 
         $.ajax({
-            url: "Product/GetProductDialog",
+            url: "AndroidShowcase/Product/GetProductDialog",
             type: "get",
             cache: false,
             data: { productid: pid, userid: uid },

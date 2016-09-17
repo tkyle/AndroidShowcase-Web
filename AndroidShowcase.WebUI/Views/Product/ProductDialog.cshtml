@@ -3,7 +3,7 @@
 
 <div class="modal-dialog">
     <div class="modal-content">
-    @using (Html.BeginForm("UpdateOrInsertProduct", "Product"))
+    @using (Ajax.BeginForm("UpdateOrInsertProduct", "Product", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#productDialog').modal('hide')" }))
     {
         @Html.HiddenFor(p => p.IsNew);
         @Html.HiddenFor(p => p.ProductBO.UserId);
