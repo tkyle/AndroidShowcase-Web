@@ -1,12 +1,12 @@
 ﻿$(document).ready(function () {
 
-    $(document).on("tap", '[data-role="delete"]', function () {
+    $(document).on("click", '[data-role="delete"]', function () {
                 
         var pid = $(this).closest("tr").data("productid");
         var uid = $(this).closest("tr").data("userid");
 
         $.ajax({
-            url: "AndroidShowcase/Product/Delete",
+            url: "Product/Delete",
             type: "post",
             cache: false,
             data: { productid: pid, userid: uid },
@@ -19,13 +19,13 @@
         });
     });
 
-    $(document).on("tap", '[data-role="edit"]', function () {
+    $(document).on("click", '[data-role="edit"]', function () {
 
         var pid = $(this).closest("tr").data("productid");
         var uid = $(this).closest("tr").data("userid");
 
         $.ajax({
-            url: "AndroidShowcase/Product/GetProductDialog",
+            url: "Product/GetProductDialog",
             type: "get",
             cache: false,
             data: { productid: pid, userid: uid },
@@ -38,13 +38,13 @@
         });
     });
 
-    $(document).on("tap", '[data-role="new"]', function () {
+    $(document).on("click", '[data-role="new"]', function () {
 
         var pid = "";
         var uid = "";
 
         $.ajax({
-            url: "AndroidShowcase/Product/GetProductDialog",
+            url: "Product/GetProductDialog",
             type: "get",
             cache: false,
             data: { productid: pid, userid: uid },

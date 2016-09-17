@@ -7,6 +7,10 @@
     cursor: pointer;
 }
 
+ .inlineBlock{
+     display: inline-block
+ }
+
 .center {
     margin: auto;
     width: 50%;
