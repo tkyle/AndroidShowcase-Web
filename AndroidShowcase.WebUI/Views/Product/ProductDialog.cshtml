@@ -3,7 +3,7 @@
 
 <div class="modal-dialog">
     <div class="modal-content">
-    @using (Ajax.BeginForm("UpdateOrInsertProduct", "Product", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#productDialog').modal('hide')" }))
+    @*@using (Ajax.BeginForm("UpdateOrInsertProduct", "Product", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#productDialog').modal('hide')"}, new { @id = "frmNewProduct" }))
     {
         @Html.HiddenFor(p => p.IsNew);
         @Html.HiddenFor(p => p.ProductBO.UserId);
@@ -24,6 +24,97 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <input type="submit" class="btn btn-success" data-ajax="false" value="Save" />            
         </div>
-    }
+    }*@
+        @using (Html.BeginForm("UpdateOrInsertProduct", "Product", FormMethod.Post, new { @id = "frmnewproduct", @role = "form", enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(p => p.IsNew);
+            @Html.HiddenFor(p => p.ProductBO.UserId);
+            @Html.HiddenFor(p => p.ProductBO.ProductId);
+
+            <div class="modal-header">
+                <h4 class="modal-title">@(Model.IsNew ? "New Product" : "Edit Product")</h4>
+            </div>
+            <div class="modal-body">
+                
+                <h3 for="name">Name</h3>  
+                <div class="form-group has-feedback">                                     
+                    @Html.EditorFor(p => p.ProductBO.Name, new { htmlAttributes = new { @id = "name", @class = "form-control" } })
+                    <i id="nameFeedback" class="form-control-feedback"></i>              
+                </div>
+                
+                <h3 for="description">Description</h3>
+                <div class="form-group has-feedback">
+                    @Html.EditorFor(p => p.ProductBO.Description, new { htmlAttributes = new { @id = "description", @class = "form-control" } })
+                    <i id="descriptionFeedback" class="form-control-feedback"></i>
+                </div>
+
+                <h3 for="cost">Cost</h3>
+                <div class="form-group has-feedback">
+                    @Html.EditorFor(p => p.ProductBO.Cost, new { htmlAttributes = new { @id = "cost", @class = "form-control" } })
+                    <i id="costFeedback" class="form-control-feedback"></i>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-success" value="Save" />
+            </div>
+        }   
     </div>
 </div>
+
+<script type="text/javascript">
+
+    $('#frmnewproduct').on('submit', function (e) {
+
+        var productName = $('#name');
+        var productNameFeedback = $('#nameFeedback');
+
+        var description = $('#description')
+        var descriptionFeedback = $('#descriptionFeedback');
+
+        var cost = $('#cost');
+        var costFeedback = $('#costFeedback');
+
+        // Check if there is a product name
+        if (!productName.val()) {
+            // Add errors highlight
+            productName.closest('.form-group').removeClass('has-success').addClass('has-error');
+            productNameFeedback.removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove");
+        } else {
+            // Remove the errors highlight
+            productName.closest('.form-group').removeClass('has-error').removeClass('glyphicon glyphicon-remove').addClass('has-success');
+            productNameFeedback.removeClass("glyphicon glyphicon-remove").addClass('glyphicon glyphicon-ok');
+        }
+
+        // Check if there is a description
+        if (!description.val()) {
+            // Add errors highlight
+            description.closest('.form-group').removeClass('has-success').addClass('has-error');
+            descriptionFeedback.removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove");
+        } else {
+            // Remove the errors highlight
+            description.closest('.form-group').removeClass('has-error').addClass('has-success');
+            descriptionFeedback.removeClass("glyphicon glyphicon-remove").addClass('glyphicon glyphicon-ok');
+        }
+
+        // Check if there is a cost entered
+        if (!cost.val()) {
+            // Add errors highlight
+            cost.closest('.form-group').removeClass('has-success').addClass('has-error');
+            costFeedback.removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove");
+        } else {
+            // Remove the errors highlight
+            cost.closest('.form-group').removeClass('has-error').addClass('has-success');
+            costFeedback.removeClass("glyphicon glyphicon-remove").addClass('glyphicon glyphicon-ok');
+        }
+
+        if (!description.val() || !productName.val() || !cost.val())
+        {
+            // Stop submission of the form
+            e.preventDefault();
+        }        
+    });
+
+
+</script>

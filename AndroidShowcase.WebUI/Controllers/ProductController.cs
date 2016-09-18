@@ -61,7 +61,7 @@ namespace AndroidShowcase.WebUI.Controllers
         [HttpPost]
         public ActionResult UpdateOrInsertProduct(ProductDialogViewModel productDialogViewModel)
         {
-             if (productDialogViewModel.IsNew)
+            if (productDialogViewModel.IsNew)
                 showcaseRepo.InsertProduct(productDialogViewModel.ProductBO);
             else
                 showcaseRepo.UpdateProduct(productDialogViewModel.ProductBO);
