@@ -61,6 +61,8 @@ namespace AndroidShowcase.WebUI.Controllers
         [HttpPost]
         public ActionResult UpdateOrInsertProduct(ProductDialogViewModel productDialogViewModel)
         {
+            productDialogViewModel.ProductBO.Cost = Math.Round(productDialogViewModel.ProductBO.Cost, 2);
+
             if (productDialogViewModel.IsNew)
                 showcaseRepo.InsertProduct(productDialogViewModel.ProductBO);
             else

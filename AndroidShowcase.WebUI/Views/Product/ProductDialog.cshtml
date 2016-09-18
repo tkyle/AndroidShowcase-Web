@@ -3,28 +3,7 @@
 
 <div class="modal-dialog">
     <div class="modal-content">
-    @*@using (Ajax.BeginForm("UpdateOrInsertProduct", "Product", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#productDialog').modal('hide')"}, new { @id = "frmNewProduct" }))
-    {
-        @Html.HiddenFor(p => p.IsNew);
-        @Html.HiddenFor(p => p.ProductBO.UserId);
-        @Html.HiddenFor(p => p.ProductBO.ProductId);
 
-        <div class="modal-header">
-            <h4 class="modal-title">@(Model.IsNew ? "New Product" : "Edit Product")</h4>
-        </div>
-        <div class="modal-body">
-            <h3 for="name">Name</h3>
-            @Html.EditorFor(p => p.ProductBO.Name, new { htmlAttributes = new { @id = "name", @class = "form-control" } })
-            <h3 for="description">Description</h3>
-            @Html.EditorFor(p => p.ProductBO.Description, new { htmlAttributes = new { @id = "description", @class = "form-control" }})
-            <h3 for="cost">Cost</h3>
-            @Html.EditorFor(p => p.ProductBO.Cost, new { htmlAttributes = new { @id = "cost", @class = "form-control" } })
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-success" data-ajax="false" value="Save" />            
-        </div>
-    }*@
         @using (Html.BeginForm("UpdateOrInsertProduct", "Product", FormMethod.Post, new { @id = "frmnewproduct", @role = "form", enctype = "multipart/form-data" }))
         {
             @Html.HiddenFor(p => p.IsNew);
@@ -59,7 +38,8 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <input type="submit" class="btn btn-success" value="Save" />
             </div>
-        }   
+        }
+           
     </div>
 </div>
 
@@ -115,6 +95,30 @@
             e.preventDefault();
         }        
     });
+
+
+    $("#cost").keydown(function (event) {
+
+
+        if (event.shiftKey == true) {
+            event.preventDefault();
+        }
+
+        if ((event.keyCode >= 48 && event.keyCode <= 57) || 
+            (event.keyCode >= 96 && event.keyCode <= 105) || 
+            event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 37 ||
+            event.keyCode == 39 || event.keyCode == 46 || event.keyCode == 190) {
+
+        } else {
+            event.preventDefault();
+        }
+
+        if($(this).val().indexOf('.') !== -1 && event.keyCode == 190)
+            event.preventDefault(); 
+        //if a decimal has been added, disable the "."-button
+
+    });
+
 
 
 </script>
