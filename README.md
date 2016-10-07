@@ -7,5 +7,5 @@ either application are reflected in the other.
 
 You may visit the site at this location:
 
-http://ec2-54-158-102-196.compute-1.amazonaws.com/AndroidShowcase/
+http://ec2-54-84-35-82.compute-1.amazonaws.com/
 
